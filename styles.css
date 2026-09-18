@@ -196,13 +196,13 @@ button {
   transform: rotate(13deg) translateX(36px);
 }
 .persona-card:nth-child(3) {
-  transform: rotate(10deg) translateX(15px);
+  transform: rotate(10deg) translateX(-16px);
 }
 .persona-card:nth-child(4) {
-  transform: rotate(14deg) translateX(42px);
+  transform: rotate(14deg) translateX(23px);
 }
 .persona-card:nth-child(5) {
-  transform: rotate(9deg) translateX(27px);
+  transform: rotate(9deg) translateX(-30px);
 }
 .persona-card:hover {
   color: var(--cyan);
