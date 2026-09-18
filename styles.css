@@ -186,7 +186,13 @@ button {
   clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%, 5% 50%);
 }
 .persona-card::after {
-  display: none;
+  inset: 3px -20px -5px -12px;
+  z-index: -2;
+  background: #f23f63;
+  clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%, 5% 50%);
+}
+.persona-card:nth-child(even) {
+  transform: translateX(42px);
 }
 .persona-card:hover {
   color: var(--cyan);
