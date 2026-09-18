@@ -148,7 +148,7 @@ button {
   gap: 0;
   width: min(100%, 390px);
   margin-left: 0;
-  transform: translateY(-50%) rotate(10deg);
+  transform: translateY(-50%);
   transform-origin: left center;
 }
 .persona-card {
@@ -166,7 +166,8 @@ button {
   overflow: visible;
   clip-path: none;
   /* La inclinación la aporta todo el bloque, como en el menú de referencia. */
-  transform: none;
+  transform: rotate(11deg);
+  transform-origin: left center;
   transition:
     transform 0.2s,
     color 0.2s;
@@ -183,25 +184,25 @@ button {
 .persona-card::before {
   inset: 0 -3px 0 -16px;
   background: var(--white);
-  clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%, 5% 50%);
+  clip-path: polygon(0 4%, 86% 4%, 100% 50%, 86% 96%, 0 96%);
 }
 .persona-card::after {
   inset: 3px -3px -5px -16px;
   z-index: -2;
   background: #f23f63;
-  clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%, 5% 50%);
+  clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%);
 }
 .persona-card:nth-child(even) {
-  transform: translateX(36px);
+  transform: rotate(13deg) translateX(36px);
 }
 .persona-card:nth-child(3) {
-  transform: translateX(15px);
+  transform: rotate(10deg) translateX(15px);
 }
 .persona-card:nth-child(4) {
-  transform: translateX(42px);
+  transform: rotate(14deg) translateX(42px);
 }
 .persona-card:nth-child(5) {
-  transform: translateX(27px);
+  transform: rotate(9deg) translateX(27px);
 }
 .persona-card:hover {
   color: var(--cyan);
@@ -787,7 +788,7 @@ button {
     left: auto;
     width: min(480px, 82vw);
     margin: 52px 0 0 8vw;
-    transform: rotate(10deg);
+    transform: none;
     transform-origin: left center;
   }
   .info-panel {
