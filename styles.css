@@ -148,7 +148,8 @@ button {
   gap: 0;
   width: min(100%, 390px);
   margin-left: 0;
-  transform: translateY(-50%);
+  transform: translateY(-50%) rotate(8deg);
+  transform-origin: left center;
 }
 .persona-card {
   position: relative;
@@ -164,9 +165,8 @@ button {
   text-align: left;
   overflow: visible;
   clip-path: none;
-  /* La inclinación forma parte del menú incluso sin interacción. */
-  transform: skewY(-4deg);
-  transform-origin: left center;
+  /* La inclinación la aporta todo el bloque, como en el menú de referencia. */
+  transform: none;
   transition:
     transform 0.2s,
     color 0.2s;
@@ -770,7 +770,8 @@ button {
     left: auto;
     width: min(480px, 82vw);
     margin: 52px 0 0 8vw;
-    transform: none;
+    transform: rotate(8deg);
+    transform-origin: left center;
   }
   .info-panel {
     position: relative;
