@@ -141,14 +141,14 @@ button {
 
 .persona-nav {
   position: absolute;
-  top: 50%;
-  left: clamp(350px, 35vw, 460px);
+  top: calc(50% - 15px);
+  left: clamp(330px, 33.5vw, 445px);
   z-index: 2;
   display: grid;
   gap: 0;
   width: min(100%, 390px);
   margin-left: 0;
-  transform: translateY(-50%) rotate(8deg);
+  transform: translateY(-50%) rotate(11deg);
   transform-origin: left center;
 }
 .persona-card {
@@ -157,7 +157,7 @@ button {
   grid-template-columns: 1fr 30px;
   align-items: center;
   gap: 6px;
-  min-height: 61px;
+  min-height: 64px;
   padding: 0;
   color: rgba(76, 190, 232, 0.83);
   border: 0;
@@ -181,18 +181,27 @@ button {
   transition: opacity 0.2s ease;
 }
 .persona-card::before {
-  inset: 0 -20px 0 -12px;
+  inset: 0 -3px 0 -16px;
   background: var(--white);
   clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%, 5% 50%);
 }
 .persona-card::after {
-  inset: 3px -20px -5px -12px;
+  inset: 3px -3px -5px -16px;
   z-index: -2;
   background: #f23f63;
   clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%, 5% 50%);
 }
 .persona-card:nth-child(even) {
-  transform: translateX(42px);
+  transform: translateX(47px);
+}
+.persona-card:nth-child(3) {
+  transform: translateX(15px);
+}
+.persona-card:nth-child(4) {
+  transform: translateX(60px);
+}
+.persona-card:nth-child(5) {
+  transform: translateX(27px);
 }
 .persona-card:hover {
   color: var(--cyan);
@@ -208,9 +217,11 @@ button {
   display: none;
 }
 .persona-card span {
-  font: 900 clamp(42px, 5.4vw, 76px)/0.76 var(--display);
+  font: 900 clamp(48px, 6.2vw, 90px)/0.72 var(--display);
   font-style: italic;
   letter-spacing: -0.045em;
+  white-space: nowrap;
+  text-shadow: 2px 3px 0 rgba(8, 46, 162, 0.4);
 }
 .persona-card.active span {
   text-shadow: 3px 3px 0 rgba(104, 13, 41, 0.5);
@@ -776,7 +787,7 @@ button {
     left: auto;
     width: min(480px, 82vw);
     margin: 52px 0 0 8vw;
-    transform: rotate(8deg);
+    transform: rotate(11deg);
     transform-origin: left center;
   }
   .info-panel {
