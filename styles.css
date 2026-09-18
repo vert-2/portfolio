@@ -199,19 +199,19 @@ button {
   margin-left: 36px;
 }
 .persona-card:nth-child(2) {
-  --item-angle: -1deg;
+  --item-angle: 14deg;
   margin-top: 18px;
 }
 .persona-card:nth-child(3) {
-  --item-angle: -2deg;
+  --item-angle: 11deg;
   margin-left: -16px;
 }
 .persona-card:nth-child(4) {
-  --item-angle: 2deg;
+  --item-angle: 15deg;
   margin-left: 23px;
 }
 .persona-card:nth-child(5) {
-  --item-angle: 9deg;
+  --item-angle: 12deg;
   margin-left: -30px;
 }
 .persona-card:hover {
