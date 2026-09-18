@@ -157,9 +157,9 @@ button {
   grid-template-columns: 1fr 30px;
   align-items: center;
   gap: 6px;
-  min-height: clamp(41px, 6.1vh, 58px);
+  min-height: clamp(50px, 7.1vh, 72px);
   padding: 0 14px;
-  color: rgba(32, 237, 242, 0.82);
+  color: #50bee8;
   border: 0;
   background: transparent;
   text-align: left;
@@ -179,26 +179,22 @@ button {
   transition: opacity 0.2s ease;
 }
 .persona-card::before {
-  inset: 2px -41px 2px -60px;
+  inset: -18px -150px 22px -12px;
   background: var(--white);
-  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%, 7% 50%);
+  clip-path: polygon(0 0, 91% 0, 100% 50%, 91% 100%, 0 100%, 4% 50%);
+  transform: rotate(6deg);
+  transform-origin: left center;
 }
 .persona-card::after {
-  top: auto;
-  bottom: -5px;
-  left: -42px;
-  width: 82%;
-  height: 5px;
-  background: var(--cyan);
-  clip-path: polygon(0 0, 100% 0, 94% 100%, 6% 100%);
+  display: none;
 }
 .persona-card:hover {
   color: var(--white);
   transform: translateX(8px);
 }
 .persona-card.active {
-  color: var(--red);
-  transform: translateX(18px);
+  color: #ed3d4e;
+  transform: translateX(10px);
 }
 .persona-card.active::before,
 .persona-card.active::after {
@@ -208,9 +204,13 @@ button {
   display: none;
 }
 .persona-card span {
-  font: 900 clamp(32px, 4.2vw, 59px)/0.75 var(--display);
+  font: 900 clamp(39px, 5.3vw, 78px)/0.7 var(--display);
   font-style: italic;
   letter-spacing: -0.045em;
+}
+.persona-card.active span {
+  text-shadow: 4px 4px 0 rgba(104, 13, 41, 0.58);
+  transform: rotate(6deg);
 }
 .persona-card i {
   justify-self: end;
