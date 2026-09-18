@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const loop = document.querySelector("#video-loop");
   const stage = document.querySelector(".video-stage");
   const loader = document.querySelector(".loader");
+  const personaApp = document.querySelector(".persona-app");
+  const personaLogo = document.querySelector(".persona-logo");
   const progress = loader.querySelector("i");
   const percent = loader.querySelector("b");
   const cards = document.querySelectorAll(".persona-card");
@@ -58,8 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
       panels.forEach((panel) => {
         panel.hidden = panel.dataset.content !== target;
       });
+      personaApp.classList.remove("is-menu");
     }),
   );
+
+  // El logo permite volver a la pantalla principal de selección.
+  personaLogo.addEventListener("click", (event) => {
+    event.preventDefault();
+    personaApp.classList.add("is-menu");
+  });
 
   // Abre o cierra el selector de canciones sin detener la música en curso.
   musicToggle.addEventListener("click", () => {
