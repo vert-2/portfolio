@@ -145,7 +145,7 @@ button {
   left: clamp(330px, 33.5vw, 445px);
   z-index: 2;
   display: grid;
-  gap: 24px;
+  gap: 12px;
   width: min(100%, 390px);
   margin-left: 0;
   transform: translateY(-50%);
@@ -157,7 +157,7 @@ button {
   grid-template-columns: 1fr 30px;
   align-items: center;
   gap: 6px;
-  min-height: 64px;
+  min-height: 72px;
   padding: 0;
   color: rgba(76, 190, 232, 0.83);
   border: 0;
@@ -165,9 +165,7 @@ button {
   text-align: left;
   overflow: visible;
   clip-path: none;
-  /* La inclinación la aporta todo el bloque, como en el menú de referencia. */
-  transform: rotate(12deg);
-  transform-origin: left center;
+  transform: none;
   transition:
     transform 0.2s,
     color 0.2s;
@@ -185,27 +183,31 @@ button {
   inset: 0 -3px 0 -16px;
   background: var(--white);
   clip-path: polygon(0 4%, 86% 4%, 100% 50%, 86% 96%, 0 96%);
+  transform: rotate(12deg);
+  transform-origin: left center;
 }
 .persona-card::after {
   inset: 3px -3px -5px -16px;
   z-index: -2;
   background: #f23f63;
   clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%);
+  transform: rotate(12deg);
+  transform-origin: left center;
 }
 .persona-card:nth-child(even) {
-  transform: rotate(17deg) translateX(36px);
+  margin-left: 36px;
 }
 .persona-card:nth-child(2) {
-  margin-top: 24px;
+  margin-top: 18px;
 }
 .persona-card:nth-child(3) {
-  transform: rotate(8deg) translateX(-16px);
+  margin-left: -16px;
 }
 .persona-card:nth-child(4) {
-  transform: rotate(16deg) translateX(23px);
+  margin-left: 23px;
 }
 .persona-card:nth-child(5) {
-  transform: rotate(10deg) translateX(-30px);
+  margin-left: -30px;
 }
 .persona-card:hover {
   color: var(--cyan);
@@ -221,11 +223,26 @@ button {
   display: none;
 }
 .persona-card span {
+  display: inline-block;
   font: 900 clamp(48px, 6.2vw, 90px)/0.72 var(--display);
   font-style: italic;
   letter-spacing: -0.045em;
   white-space: nowrap;
   text-shadow: 2px 3px 0 rgba(8, 46, 162, 0.4);
+  transform: rotate(12deg);
+  transform-origin: left center;
+}
+.persona-card:nth-child(2) span {
+  transform: rotate(16deg);
+}
+.persona-card:nth-child(3) span {
+  transform: rotate(9deg);
+}
+.persona-card:nth-child(4) span {
+  transform: rotate(15deg);
+}
+.persona-card:nth-child(5) span {
+  transform: rotate(11deg);
 }
 .persona-card.active span {
   text-shadow: 3px 3px 0 rgba(104, 13, 41, 0.5);
