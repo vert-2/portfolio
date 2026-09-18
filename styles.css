@@ -148,7 +148,7 @@ button {
   gap: 0;
   width: min(100%, 390px);
   margin-left: 0;
-  transform: translateY(-50%) rotate(11deg);
+  transform: translateY(-50%) rotate(10deg);
   transform-origin: left center;
 }
 .persona-card {
@@ -192,13 +192,13 @@ button {
   clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%, 5% 50%);
 }
 .persona-card:nth-child(even) {
-  transform: translateX(47px);
+  transform: translateX(36px);
 }
 .persona-card:nth-child(3) {
   transform: translateX(15px);
 }
 .persona-card:nth-child(4) {
-  transform: translateX(60px);
+  transform: translateX(42px);
 }
 .persona-card:nth-child(5) {
   transform: translateX(27px);
@@ -787,7 +787,7 @@ button {
     left: auto;
     width: min(480px, 82vw);
     margin: 52px 0 0 8vw;
-    transform: rotate(11deg);
+    transform: rotate(10deg);
     transform-origin: left center;
   }
   .info-panel {
