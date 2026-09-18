@@ -164,6 +164,9 @@ button {
   text-align: left;
   overflow: visible;
   clip-path: none;
+  /* La inclinación forma parte del menú incluso sin interacción. */
+  transform: skewY(-4deg);
+  transform-origin: left center;
   transition:
     transform 0.2s,
     color 0.2s;
