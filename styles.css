@@ -190,11 +190,9 @@ button {
 }
 .persona-card:hover {
   color: var(--white);
-  transform: translateX(8px);
 }
 .persona-card.active {
   color: #ed3d4e;
-  transform: translateX(10px);
 }
 .persona-card.active::before,
 .persona-card.active::after {
@@ -207,10 +205,11 @@ button {
   font: 900 clamp(39px, 5.3vw, 78px)/0.7 var(--display);
   font-style: italic;
   letter-spacing: -0.045em;
+  transform: rotate(6deg);
+  transform-origin: left center;
 }
 .persona-card.active span {
   text-shadow: 4px 4px 0 rgba(104, 13, 41, 0.58);
-  transform: rotate(6deg);
 }
 .persona-card i {
   justify-self: end;
