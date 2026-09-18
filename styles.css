@@ -152,6 +152,7 @@ button {
   transform-origin: left center;
 }
 .persona-card {
+  --item-angle: 12deg;
   position: relative;
   display: grid;
   grid-template-columns: 1fr 30px;
@@ -183,7 +184,7 @@ button {
   inset: 0 -3px 0 -16px;
   background: var(--white);
   clip-path: polygon(0 4%, 86% 4%, 100% 50%, 86% 96%, 0 96%);
-  transform: rotate(12deg);
+  transform: rotate(var(--item-angle));
   transform-origin: left center;
 }
 .persona-card::after {
@@ -191,22 +192,26 @@ button {
   z-index: -2;
   background: #f23f63;
   clip-path: polygon(0 74%, 86% 74%, 100% 50%, 86% 100%, 0 100%);
-  transform: rotate(12deg);
+  transform: rotate(var(--item-angle));
   transform-origin: left center;
 }
 .persona-card:nth-child(even) {
   margin-left: 36px;
 }
 .persona-card:nth-child(2) {
+  --item-angle: -1deg;
   margin-top: 18px;
 }
 .persona-card:nth-child(3) {
+  --item-angle: -2deg;
   margin-left: -16px;
 }
 .persona-card:nth-child(4) {
+  --item-angle: 2deg;
   margin-left: 23px;
 }
 .persona-card:nth-child(5) {
+  --item-angle: 9deg;
   margin-left: -30px;
 }
 .persona-card:hover {
@@ -229,20 +234,8 @@ button {
   letter-spacing: -0.045em;
   white-space: nowrap;
   text-shadow: 2px 3px 0 rgba(8, 46, 162, 0.4);
-  transform: rotate(12deg);
+  transform: rotate(var(--item-angle));
   transform-origin: left center;
-}
-.persona-card:nth-child(2) span {
-  transform: rotate(16deg);
-}
-.persona-card:nth-child(3) span {
-  transform: rotate(9deg);
-}
-.persona-card:nth-child(4) span {
-  transform: rotate(15deg);
-}
-.persona-card:nth-child(5) span {
-  transform: rotate(11deg);
 }
 .persona-card.active span {
   text-shadow: 3px 3px 0 rgba(104, 13, 41, 0.5);
