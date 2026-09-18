@@ -145,7 +145,7 @@ button {
   left: clamp(330px, 33.5vw, 445px);
   z-index: 2;
   display: grid;
-  gap: 0;
+  gap: 16px;
   width: min(100%, 390px);
   margin-left: 0;
   transform: translateY(-50%);
