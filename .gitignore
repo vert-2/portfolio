@@ -1,0 +1,4 @@
+# Configuración local del editor y archivos del sistema.
+.vscode/
+.DS_Store
+Thumbs.db
