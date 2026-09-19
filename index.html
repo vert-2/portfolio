@@ -9,10 +9,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Mono:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=nav-ui-1" />
   </head>
   <body>
     <div class="video-stage" aria-hidden="true">
@@ -42,38 +42,74 @@
         </div>
 
         <nav class="persona-nav" aria-label="Secciones">
-          <button class="persona-card active" type="button" data-panel="about">
+          <button
+            class="persona-card active"
+            type="button"
+            data-panel="about"
+            aria-controls="panel-about"
+            aria-pressed="true"
+            aria-current="page"
+            tabindex="0"
+          >
             <b></b><span>ABOUT ME</span><i>⌁</i>
           </button>
-          <button class="persona-card" type="button" data-panel="resume">
+          <button
+            class="persona-card"
+            type="button"
+            data-panel="resume"
+            aria-controls="panel-resume"
+            aria-pressed="false"
+            tabindex="-1"
+          >
             <b></b><span>RESUME</span><i>↗</i>
           </button>
-          <button class="persona-card" type="button" data-panel="github">
+          <button
+            class="persona-card"
+            type="button"
+            data-panel="github"
+            aria-controls="panel-github"
+            aria-pressed="false"
+            tabindex="-1"
+          >
             <b></b><span>GITHUB LINK</span><i>↗</i>
           </button>
-          <button class="persona-card" type="button" data-panel="social">
+          <button
+            class="persona-card"
+            type="button"
+            data-panel="social"
+            aria-controls="panel-social"
+            aria-pressed="false"
+            tabindex="-1"
+          >
             <b></b><span>SOCIALS</span><i>↗</i>
           </button>
-          <button class="persona-card" type="button" data-panel="projects">
+          <button
+            class="persona-card"
+            type="button"
+            data-panel="projects"
+            aria-controls="panel-projects"
+            aria-pressed="false"
+            tabindex="-1"
+          >
             <b></b><span>SIDE PROJECTS</span><i>↗</i>
           </button>
         </nav>
 
         <aside class="info-panel" aria-live="polite">
           <p class="panel-eyebrow">STATUS // ACTIVE</p>
-          <div class="panel-content" data-content="about">
+          <div id="panel-about" class="panel-content" data-content="about">
             <h2>ABOUT<br />ME</h2>
             <p>Una persona que le encanta aprender y crear cosas nuevas.</p>
             <div class="stats">
               <span><b>∞</b> CURIOSIDAD</span><span><b>01</b> HUMANO</span>
             </div>
           </div>
-          <div class="panel-content" data-content="resume" hidden>
+          <div id="panel-resume" class="panel-content" data-content="resume" hidden>
             <h2>RESUME</h2>
             <p>Mi CV.</p>
             <a href="#" class="panel-link">DOWNLOAD CV <b>↗</b></a>
           </div>
-          <div class="panel-content" data-content="github" hidden>
+          <div id="panel-github" class="panel-content" data-content="github" hidden>
             <h2>CODE<br />BASE</h2>
             <p>Mi perfil de GitHub.</p>
             <a
@@ -84,14 +120,14 @@
               >OPEN GITHUB <b>↗</b></a
             >
           </div>
-          <div class="panel-content" data-content="social" hidden>
+          <div id="panel-social" class="panel-content" data-content="social" hidden>
             <h2>SOCIAL<br />ZONE</h2>
             <p>Mis redes sociales.</p>
             <div class="social-list">
               <span>LINKEDIN</span><span>TIKTOK</span><span>INSTAGRAM</span>
             </div>
           </div>
-          <div class="panel-content" data-content="projects" hidden>
+          <div id="panel-projects" class="panel-content" data-content="projects" hidden>
             <h2>MY<br />PROJECTS</h2>
             <p>Proyectos disponibles en mi GitHub.</p>
             <div class="project-list" aria-label="Proyectos de GitHub">
@@ -259,6 +295,6 @@
     </section>
 
     <div class="loader"><span>LOADING PERSONA</span><i></i><b>00</b></div>
-    <script src="script.js"></script>
+    <script src="script.js?v=nav-ui-1"></script>
   </body>
 </html>

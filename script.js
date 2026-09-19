@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const progress = loader.querySelector("i");
   const percent = loader.querySelector("b");
   const cards = document.querySelectorAll(".persona-card");
+  const cardList = Array.from(cards);
   const panels = document.querySelectorAll(".panel-content");
   const musicPlayer = document.querySelector("#music-player");
   const musicToggle = document.querySelector("#music-toggle");
@@ -52,22 +53,64 @@ document.addEventListener("DOMContentLoaded", () => {
     playLoop();
   }, 8000);
 
+  // Mantiene una selección única y una navegación de teclado predecible.
+  let selectedCard = cardList.find((card) => card.classList.contains("active")) || cardList[0];
+  const syncCardState = (card) => {
+    selectedCard = card;
+    cardList.forEach((item) => {
+      const isActive = item === card;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-pressed", String(isActive));
+      item.tabIndex = isActive ? 0 : -1;
+      if (isActive) item.setAttribute("aria-current", "page");
+      else item.removeAttribute("aria-current");
+    });
+  };
+
+  syncCardState(selectedCard);
+
   // Muestra el panel correspondiente a cada tarjeta del menú.
-  cards.forEach((card) =>
+  cards.forEach((card) => {
     card.addEventListener("click", () => {
       const target = card.dataset.panel;
-      cards.forEach((item) => item.classList.toggle("active", item === card));
+      personaApp.classList.remove("keyboard-menu");
+      syncCardState(card);
       panels.forEach((panel) => {
         panel.hidden = panel.dataset.content !== target;
       });
       personaApp.classList.remove("is-menu");
-    }),
-  );
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (!cardList.length) return;
+
+      const currentIndex = cardList.indexOf(card);
+      let nextIndex = currentIndex;
+      if (event.key === "ArrowDown" || event.key === "Down") {
+        nextIndex = (currentIndex + 1) % cardList.length;
+      } else if (event.key === "ArrowUp" || event.key === "Up") {
+        nextIndex = (currentIndex - 1 + cardList.length) % cardList.length;
+      } else if (event.key === "Home") {
+        nextIndex = 0;
+      } else if (event.key === "End") {
+        nextIndex = cardList.length - 1;
+      } else {
+        return;
+      }
+
+      event.preventDefault();
+      const nextCard = cardList[nextIndex];
+      personaApp.classList.add("keyboard-menu");
+      syncCardState(nextCard);
+      nextCard.focus({ preventScroll: true });
+    });
+  });
 
   // El logo permite volver a la pantalla principal de selección.
   personaLogo.addEventListener("click", (event) => {
     event.preventDefault();
     personaApp.classList.add("is-menu");
+    selectedCard?.focus({ preventScroll: true });
   });
 
   // Abre o cierra el selector de canciones sin detener la música en curso.
