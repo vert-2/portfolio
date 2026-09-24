@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Elementos que controlan la transición entre videos y el indicador de carga.
+  // 1. Referencias del DOM: fondo, navegación y reproductor.
   const intro = document.querySelector("#video-intro");
   const loop = document.querySelector("#video-loop");
   const stage = document.querySelector(".video-stage");
@@ -22,7 +22,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentTime = document.querySelector("#current-time");
   const trackDuration = document.querySelector("#track-duration");
   const nextTrack = document.querySelector("#next-track");
+  const previousTrack = document.querySelector("#previous-track");
+  const volume = document.querySelector("#music-volume");
+  const muteToggle = document.querySelector("#mute-toggle");
+  const musicNote = document.querySelector(".music-note");
+  // Mantiene los controles visibles cuando la lista de canciones está cerrada.
+  musicPlayer.append(
+    document.querySelector(".audio-console"),
+    document.querySelector(".volume-console"),
+    musicNote,
+  );
 
+  // 2. Carga inicial y transición entre los videos de fondo.
   // Finaliza visualmente la carga del video.
   const endLoading = () => {
     progress.style.setProperty("--progress", "100%");
@@ -53,8 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
     playLoop();
   }, 8000);
 
+  // 3. Menú principal: selección con mouse y teclado.
   // Mantiene una selección única y una navegación de teclado predecible.
-  let selectedCard = cardList.find((card) => card.classList.contains("active")) || cardList[0];
+  let selectedCard =
+    cardList.find((card) => card.classList.contains("active")) || cardList[0];
   const syncCardState = (card) => {
     selectedCard = card;
     cardList.forEach((item) => {
@@ -71,6 +84,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Muestra el panel correspondiente a cada tarjeta del menú.
   cards.forEach((card) => {
+    card.addEventListener("pointerenter", () => {
+      if (personaApp.classList.contains("is-menu")) syncCardState(card);
+    });
     card.addEventListener("click", () => {
       const target = card.dataset.panel;
       personaApp.classList.remove("keyboard-menu");
@@ -79,6 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         panel.hidden = panel.dataset.content !== target;
       });
       personaApp.classList.remove("is-menu");
+      document.querySelector(".back-menu").focus({ preventScroll: true });
     });
 
     card.addEventListener("keydown", (event) => {
@@ -106,6 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // 4. Regreso al menú y atajos globales.
   // El logo permite volver a la pantalla principal de selección.
   personaLogo.addEventListener("click", (event) => {
     event.preventDefault();
@@ -113,6 +131,52 @@ document.addEventListener("DOMContentLoaded", () => {
     selectedCard?.focus({ preventScroll: true });
   });
 
+  const returnToMenu = () => {
+    personaApp.classList.add("is-menu");
+    selectedCard?.focus({ preventScroll: true });
+  };
+  document.querySelector(".back-menu").addEventListener("click", returnToMenu);
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      if (!musicLibrary.hidden) {
+        musicLibrary.hidden = true;
+        musicToggle.setAttribute("aria-expanded", "false");
+        musicPlayer.classList.remove("is-open");
+        musicToggle.focus();
+      } else returnToMenu();
+    }
+    if (
+      personaApp.classList.contains("is-menu") &&
+      (event.target === document.body || event.target === personaLogo) &&
+      ["ArrowUp", "ArrowDown"].includes(event.key)
+    ) {
+      event.preventDefault();
+      const offset = event.key === "ArrowDown" ? 1 : -1;
+      const next =
+        cardList[
+          (cardList.indexOf(selectedCard) + offset + cardList.length) %
+            cardList.length
+        ];
+      syncCardState(next);
+      next.focus({ preventScroll: true });
+    }
+  });
+  // 5. Submenús de las secciones del portafolio.
+  document.querySelectorAll(".section-switcher button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const panel = button.closest(".panel-content");
+      panel
+        .querySelectorAll("[data-detail]")
+        .forEach((item) =>
+          item.setAttribute("aria-pressed", String(item === button)),
+        );
+      panel.querySelectorAll("[data-detail-content]").forEach((item) => {
+        item.hidden = item.dataset.detailContent !== button.dataset.detail;
+      });
+    });
+  });
+
+  // 6. Reproductor: lista, tiempos y estado de reproducción.
   // Abre o cierra el selector de canciones sin detener la música en curso.
   musicToggle.addEventListener("click", () => {
     const isOpen = musicToggle.getAttribute("aria-expanded") === "true";
@@ -148,27 +212,32 @@ document.addEventListener("DOMContentLoaded", () => {
     playbackToggle.classList.toggle("is-playing", isPlaying);
   };
 
-  // Intenta iniciar la primera canción en cuanto el navegador tenga suficiente audio.
-  // Algunos navegadores exigen una interacción antes de permitir audio automático.
-  const startMusicOnLoad = () => {
-    musicAudio.play().catch(() => setPlaybackState(false));
-  };
+  // Inicia la reproducción desde los controles y muestra los errores.
+  const playMusic = () =>
+    musicAudio.play().catch(() => {
+      setPlaybackState(false);
+      musicNote.textContent =
+        "No se pudo reproducir. Prueba otra pista o pulsa play.";
+    });
 
   // Sincroniza los controles personalizados con el reproductor de audio.
   musicAudio.volume = 0.65;
-  musicAudio.addEventListener("canplay", startMusicOnLoad, { once: true });
-  document.addEventListener("pointerdown", startMusicOnLoad, { once: true });
-  document.addEventListener("keydown", startMusicOnLoad, { once: true });
   musicAudio.addEventListener("loadedmetadata", () => {
     trackDuration.textContent = formatTime(musicAudio.duration);
     updateProgress();
   });
   musicAudio.addEventListener("timeupdate", updateProgress);
-  musicAudio.addEventListener("play", () => setPlaybackState(true));
-  musicAudio.addEventListener("pause", () => setPlaybackState(false));
+  musicAudio.addEventListener("play", () => {
+    setPlaybackState(true);
+    musicNote.textContent = "REPRODUCIENDO / LEO MUSIC";
+  });
+  musicAudio.addEventListener("pause", () => {
+    setPlaybackState(false);
+    musicNote.textContent = "EN PAUSA / LEO MUSIC";
+  });
 
   playbackToggle.addEventListener("click", () => {
-    if (musicAudio.paused) musicAudio.play().catch(() => {});
+    if (musicAudio.paused) playMusic();
     else musicAudio.pause();
   });
 
@@ -180,6 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateProgress();
   });
 
+  // 7. Selección de canciones y controles anterior/siguiente.
   // Carga y reproduce el archivo local correspondiente a la pista elegida.
   tracks.forEach((track) => {
     track.addEventListener("click", () => {
@@ -193,7 +263,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       musicAudio.src = encodeURI(track.dataset.source);
       musicAudio.load();
-      musicAudio.play().catch(() => {});
+      currentTime.textContent = "00:00";
+      trackDuration.textContent = "--:--";
+      playbackProgress.value = 0;
+      playMusic();
     });
   });
 
@@ -205,4 +278,35 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   musicAudio.addEventListener("ended", () => nextTrack.click());
+  previousTrack.addEventListener("click", () => {
+    const index = Array.from(tracks).indexOf(
+      document.querySelector(".track.active"),
+    );
+    tracks[(index - 1 + tracks.length) % tracks.length].click();
+  });
+  // 8. Volumen, silencio y errores de audio.
+  const updateVolume = () => {
+    const value = musicAudio.muted ? 0 : Math.round(musicAudio.volume * 100);
+    volume.value = value;
+    document.querySelector("#volume-value").textContent = `${value}%`;
+    muteToggle.setAttribute("aria-pressed", String(musicAudio.muted));
+    muteToggle.setAttribute(
+      "aria-label",
+      musicAudio.muted ? "Activar sonido" : "Silenciar",
+    );
+    muteToggle.textContent = musicAudio.muted ? "×" : "♪";
+  };
+  volume.addEventListener("input", () => {
+    musicAudio.volume = Number(volume.value) / 100;
+    musicAudio.muted = false;
+    updateVolume();
+  });
+  muteToggle.addEventListener("click", () => {
+    musicAudio.muted = !musicAudio.muted;
+    updateVolume();
+  });
+  musicAudio.addEventListener("error", () => {
+    musicNote.textContent = "Audio no disponible. Selecciona otra pista.";
+    setPlaybackState(false);
+  });
 });

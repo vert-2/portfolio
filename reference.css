@@ -1,0 +1,417 @@
+/* Diseño actual. Se carga después de styles.css para conservar la cascada. */
+/* 1. Escala del menú e identidad. */
+.leo-reference {
+  --menu-size: clamp(30px, 3.6vw, 66px);
+}
+.leo-reference .persona-logo {
+  font:
+    900 italic clamp(42px, 5.5vw, 92px)/0.8 "Barlow Condensed",
+    sans-serif;
+  transform: rotate(17deg);
+  text-shadow: none;
+  color: #101010;
+  text-decoration: none;
+}
+.leo-reference .persona-logo strong {
+  color: #363636;
+  font-size: 0.9em;
+}
+.leo-reference .system-label,
+.leo-reference .command-stack {
+  display: none;
+}
+/* 2. Posición, tipografía e indicador del menú principal. */
+.leo-reference .persona-nav {
+  position: absolute;
+  inset: 42% auto auto 37%;
+  width: max-content;
+  max-width: none;
+  margin: 0;
+  transform: translateY(-50%);
+  perspective: none;
+  transform-style: flat;
+  gap: 0 !important;
+}
+.leo-reference .persona-nav::before {
+  display: none;
+}
+.leo-reference .persona-nav .persona-card {
+  --tilt: -5deg;
+  --offset: 0px;
+  display: flex !important;
+  align-items: center !important;
+  width: max-content;
+  max-width: none;
+  min-height: 0;
+  height: calc(var(--menu-size) * 1.03) !important;
+  margin: 0 0 0 var(--offset) !important;
+  padding: 0;
+  transform: rotate(var(--tilt)) !important;
+  transform-origin: 40% 50%;
+  isolation: isolate;
+  transform-style: flat;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+  border: 0;
+  transition:
+    transform 0.2s ease,
+    filter 0.2s ease;
+}
+.leo-reference .persona-card:nth-child(1) {
+  --tilt: 9deg;
+  --offset: 0px;
+}
+.leo-reference .persona-card:nth-child(2) {
+  --tilt: -7deg;
+  --offset: 24px;
+}
+.leo-reference .persona-card:nth-child(3) {
+  --tilt: -4deg;
+  --offset: 8px;
+}
+.leo-reference .persona-card:nth-child(4) {
+  --tilt: 2deg;
+  --offset: 22px;
+}
+.leo-reference .persona-card:nth-child(5) {
+  --tilt: 7deg;
+  --offset: 4px;
+}
+.leo-reference .persona-nav .persona-card span {
+  font:
+    700 var(--menu-size)/0.95 "Oswald",
+    "Arial Narrow",
+    sans-serif;
+  font-style: normal;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+  line-height: 0.95 !important;
+  transform: skewX(-12deg) !important;
+  color: #55c9ee;
+  -webkit-text-fill-color: #55c9ee;
+  background: none;
+  -webkit-text-stroke: 0;
+  text-shadow:
+    1px 2px 0 #2b8fd0,
+    2px 3px 0 rgba(12, 70, 154, 0.4);
+}
+.leo-reference .persona-nav .persona-card.active {
+  z-index: 5;
+}
+.leo-reference .persona-nav .persona-card.active span {
+  color: #e82943;
+  -webkit-text-fill-color: #e82943;
+  text-shadow: 2px 2px 0 #921d39;
+}
+.leo-reference .persona-app .persona-card::before,
+.leo-reference .persona-app .persona-card::after {
+  inset: 4% auto auto -9px !important;
+  width: calc(100% + 65px) !important;
+  height: 90% !important;
+  transform: none !important;
+  filter: none !important;
+  clip-path: polygon(0 0, 100% 75%, 0 100%) !important;
+  opacity: 0 !important;
+  background: #fff !important;
+  z-index: -1 !important;
+  transition: opacity 0.16s ease;
+}
+.leo-reference .persona-app .persona-card::after {
+  inset: 12% auto auto -10px !important;
+  background: #ff528a !important;
+  z-index: -2 !important;
+}
+.leo-reference .persona-app .persona-card.active::before,
+.leo-reference .persona-app .persona-card.active::after {
+  opacity: 1 !important;
+}
+.leo-reference .persona-app .persona-card:focus-visible {
+  outline: 0 !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 0 4px #baf9ff) !important;
+}
+.leo-reference .control-hint {
+  font-size: 9px;
+}
+.leo-reference .identity {
+  opacity: 0.6;
+}
+.leo-reference .persona-app:not(.is-menu) .persona-nav {
+  visibility: hidden;
+  pointer-events: none;
+}
+/* 3. Paneles de contenido y submenús. */
+.leo-reference .info-panel {
+  inset: 2% 23% auto auto;
+  width: min(620px, 65vw);
+  max-height: 73svh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transform: none;
+  padding: 24px 30px;
+  border: 0;
+  border-left: 5px solid #60defa;
+  background: rgba(5, 17, 58, 0.96);
+  box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.28);
+}
+.leo-reference .persona-app.is-menu .info-panel {
+  visibility: hidden;
+  pointer-events: none;
+}
+.leo-reference .info-panel h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 0.9;
+}
+.leo-reference .panel-content {
+  transform: none;
+}
+.leo-reference .panel-content p {
+  max-width: none;
+  line-height: 1.35;
+  margin-top: 12px;
+}
+.leo-reference .info-panel::after {
+  display: none;
+}
+.leo-reference .back-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 9px 12px;
+  background: #58dcf5;
+  color: #06132f;
+  border: 0;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.leo-reference .section-switcher {
+  display: grid;
+  gap: 6px;
+  margin: 20px 0;
+}
+.leo-reference .section-switcher button {
+  border: 0;
+  border-left: 4px solid #60defa;
+  padding: 12px 18px;
+  background: #142951;
+  color: #87edff;
+  text-align: left;
+  font:
+    800 24px/1 "Barlow Condensed",
+    sans-serif;
+  clip-path: polygon(0 0, 100% 0, 98% 100%, 0 100%);
+}
+.leo-reference .section-switcher button[aria-pressed="true"] {
+  background: #fff;
+  color: #091124;
+  border-left-color: #ff385d;
+}
+.leo-reference .content-note {
+  color: #a8bbd5;
+  font-size: 16px;
+}
+.leo-reference [hidden] {
+  display: none !important;
+}
+/* 4. Reproductor: lista de canciones, transporte y volumen. */
+.leo-reference .music-player {
+  inset: auto 16px 16px auto;
+  width: clamp(195px, 19vw, 285px);
+  background: rgba(4, 10, 30, 0.95);
+  color: #70d1e7;
+  padding: 8px;
+  border: 1px solid #22466e;
+  border-right: 3px solid #ed315a;
+  box-shadow: -5px 5px 0 rgba(3, 18, 61, 0.45);
+  transform: skewY(-2deg);
+}
+.leo-reference .music-toggle {
+  min-height: 30px;
+  padding: 5px;
+  clip-path: none;
+  background: transparent;
+  color: #72d6ec;
+  grid-template-columns: 14px 1fr 14px;
+  gap: 3px;
+}
+.leo-reference .music-toggle span {
+  color: #ed315a;
+  font-size: 16px;
+}
+.leo-reference .music-toggle small {
+  color: #78e2f7;
+  font:
+    italic 700 15px/1.2 "Barlow Condensed",
+    sans-serif;
+}
+.leo-reference .music-toggle i {
+  font-size: 18px;
+}
+.leo-reference .music-library {
+  border: 0;
+  border-top: 1px solid #264065;
+  padding: 5px 0;
+  margin: 0;
+  box-shadow: none;
+  background: transparent;
+  max-height: 40svh;
+  overflow-y: auto;
+}
+.leo-reference .music-heading,
+.leo-reference .now-playing {
+  display: none;
+}
+.leo-reference .track-list {
+  margin: 0;
+  gap: 2px;
+}
+.leo-reference .track {
+  font-size: 14px;
+  background: transparent;
+  padding: 8px 5px;
+  border-left: 2px solid transparent;
+}
+.leo-reference .track.active {
+  background: #162139;
+  color: #62e8ff;
+  border-left-color: #f13260;
+}
+.leo-reference .audio-console {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  padding: 3px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 4px;
+}
+.leo-reference .progress-console {
+  grid-column: 1 / -1;
+  grid-row: 1;
+}
+.leo-reference .progress-labels {
+  color: #b6c7e4;
+  font-size: 8px;
+}
+.leo-reference .progress-labels b {
+  display: none;
+}
+.leo-reference #playback-progress {
+  width: 100%;
+  accent-color: #f52a59;
+  height: 5px;
+}
+.leo-reference .audio-console button {
+  background: transparent;
+  color: #b7d4ea;
+  border: 0;
+  min-height: 40px;
+  font: 800 25px/1 sans-serif;
+}
+.leo-reference .audio-console #playback-toggle {
+  color: #ee3159;
+}
+.leo-reference .volume-console {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.leo-reference .volume-console button {
+  background: none;
+  color: #7acbdc;
+  border: 0;
+  width: 24px;
+}
+.leo-reference .volume-console input {
+  min-width: 0;
+  width: 100%;
+  accent-color: #60cde5;
+  height: 4px;
+}
+.leo-reference .volume-console span {
+  font: 9px var(--mono);
+}
+.leo-reference .music-note {
+  font-size: 7px;
+  line-height: 1.4;
+  margin: 6px 3px 0;
+  color: #a4bbd0;
+}
+/* 5. Accesibilidad y adaptación a pantallas pequeñas. */
+.leo-reference button:focus-visible,
+.leo-reference a:focus-visible {
+  outline: 2px solid #9deeff;
+  outline-offset: 3px;
+}
+@media (max-width: 830px) {
+  .leo-reference {
+    --menu-size: clamp(30px, 5.1vw, 43px);
+  }
+  .leo-reference .persona-nav {
+    left: 36%;
+    right: auto;
+  }
+  .leo-reference .info-panel {
+    width: 85vw;
+    inset: 4% 2% auto auto;
+    max-height: 65svh;
+  }
+}
+@media (max-width: 560px) {
+  .leo-reference {
+    --menu-size: clamp(28px, 7.7vw, 42px);
+  }
+  .leo-reference .hero-ui {
+    min-height: 60svh;
+  }
+  .leo-reference .persona-nav {
+    position: absolute;
+    inset: 38% auto auto 26%;
+    width: max-content;
+    margin: 0;
+    transform: translateY(-50%);
+  }
+  .leo-reference .persona-card:nth-child(2) {
+    --offset: 15px;
+  }
+  .leo-reference .persona-card:nth-child(4) {
+    --offset: 12px;
+  }
+  .leo-reference .persona-app .persona-card::before,
+  .leo-reference .persona-app .persona-card::after {
+    width: calc(100% + 25px) !important;
+  }
+  .leo-reference .music-player {
+    right: 10px;
+    bottom: 10px;
+    width: 195px;
+  }
+  .leo-reference .info-panel {
+    position: fixed;
+    inset: 110px 12px auto;
+    width: auto;
+    margin: 0;
+    max-height: calc(100svh - 320px);
+    padding: 16px;
+  }
+  .leo-reference .hud-footer {
+    justify-content: flex-start;
+  }
+  .leo-reference .identity {
+    display: none;
+  }
+  .leo-reference .control-hint {
+    max-width: 130px;
+    flex-wrap: wrap;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .leo-reference *,
+  .leo-reference *::before,
+  .leo-reference *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

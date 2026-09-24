@@ -12,9 +12,11 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=nav-ui-1" />
+    <link rel="stylesheet" href="styles.css?v=nav-ui-2" />
+    <link rel="stylesheet" href="reference.css?v=leo-1" />
   </head>
-  <body>
+  <body class="leo-reference">
+    <!-- Fondo animado e introducción. -->
     <div class="video-stage" aria-hidden="true">
       <video id="video-intro" autoplay muted playsinline preload="auto">
         <source src="assets/video/Intro.mp4" type="video/mp4" />
@@ -27,9 +29,10 @@
     </div>
 
     <main class="persona-app is-menu">
+      <!-- Identidad y cabecera. -->
       <header class="topbar">
         <a class="persona-logo" href="#about" aria-label="Inicio"
-          ><span>LEO'S</span><strong>folio</strong></a
+          ><span>LEO'S</span><strong>Persona</strong></a
         >
         <p class="system-label">FOLIO // PORTFOLIO</p>
       </header>
@@ -41,6 +44,7 @@
           <p>PORTFOLIO<br />// 2026</p>
         </div>
 
+        <!-- Menú principal: cada data-panel corresponde a un data-content. -->
         <nav class="persona-nav" aria-label="Secciones">
           <button
             class="persona-card active"
@@ -95,7 +99,11 @@
           </button>
         </nav>
 
+        <!-- Contenido de las secciones y sus submenús. -->
         <aside class="info-panel" aria-live="polite">
+          <button class="back-menu" type="button">
+            ← VOLVER <small>ESC</small>
+          </button>
           <p class="panel-eyebrow">STATUS // ACTIVE</p>
           <div id="panel-about" class="panel-content" data-content="about">
             <h2>ABOUT<br />ME</h2>
@@ -103,13 +111,72 @@
             <div class="stats">
               <span><b>∞</b> CURIOSIDAD</span><span><b>01</b> HUMANO</span>
             </div>
+            <div class="section-switcher" aria-label="Perfil de Leo">
+              <button type="button" data-detail="bio" aria-pressed="true">
+                01 / ABOUT ME
+              </button>
+              <button
+                type="button"
+                data-detail="interests"
+                aria-pressed="false"
+              >
+                02 / INTERESTS
+              </button>
+            </div>
+            <p data-detail-content="bio">
+              Leo — una persona que disfruta aprender y crear cosas nuevas.
+            </p>
+            <p data-detail-content="interests" hidden>
+              Programación y creación de proyectos. Explora SIDE PROJECTS para
+              ver mi trabajo.
+            </p>
           </div>
-          <div id="panel-resume" class="panel-content" data-content="resume" hidden>
+          <div
+            id="panel-resume"
+            class="panel-content"
+            data-content="resume"
+            hidden
+          >
             <h2>RESUME</h2>
-            <p>Mi CV.</p>
-            <a href="#" class="panel-link">DOWNLOAD CV <b>↗</b></a>
+            <div class="section-switcher" aria-label="Currículum de Leo">
+              <button type="button" data-detail="education" aria-pressed="true">
+                I / EDUCATION
+              </button>
+              <button type="button" data-detail="skills" aria-pressed="false">
+                II / SKILLS
+              </button>
+              <button type="button" data-detail="work" aria-pressed="false">
+                III / PROJECTS
+              </button>
+              <button
+                type="button"
+                data-detail="experience"
+                aria-pressed="false"
+              >
+                IV / EXPERIENCE
+              </button>
+            </div>
+            <p data-detail-content="education">
+              Programación 3: clases y tareas disponibles en mis repositorios.
+            </p>
+            <p data-detail-content="skills" hidden>
+              C# y Java, utilizados en los proyectos de este portafolio.
+            </p>
+            <p data-detail-content="work" hidden>
+              Sacaito y los repositorios de Programación 3. Consulta SIDE
+              PROJECTS para abrirlos.
+            </p>
+            <p data-detail-content="experience" hidden>
+              Información de experiencia pendiente de añadir.
+            </p>
+            <p class="content-note">CV descargable pendiente de añadir.</p>
           </div>
-          <div id="panel-github" class="panel-content" data-content="github" hidden>
+          <div
+            id="panel-github"
+            class="panel-content"
+            data-content="github"
+            hidden
+          >
             <h2>CODE<br />BASE</h2>
             <p>Mi perfil de GitHub.</p>
             <a
@@ -117,17 +184,29 @@
               class="panel-link"
               target="_blank"
               rel="noreferrer"
-              >OPEN GITHUB <b>↗</b></a
-            >
+              >OPEN GITHUB <b></b
+            ></a>
           </div>
-          <div id="panel-social" class="panel-content" data-content="social" hidden>
+          <div
+            id="panel-social"
+            class="panel-content"
+            data-content="social"
+            hidden
+          >
             <h2>SOCIAL<br />ZONE</h2>
             <p>Mis redes sociales.</p>
             <div class="social-list">
-              <span>LINKEDIN</span><span>TIKTOK</span><span>INSTAGRAM</span>
+              <span>LINKEDIN · PRÓXIMAMENTE</span
+              ><span>TIKTOK · PRÓXIMAMENTE</span
+              ><span>INSTAGRAM · PRÓXIMAMENTE</span>
             </div>
           </div>
-          <div id="panel-projects" class="panel-content" data-content="projects" hidden>
+          <div
+            id="panel-projects"
+            class="panel-content"
+            data-content="projects"
+            hidden
+          >
             <h2>MY<br />PROJECTS</h2>
             <p>Proyectos disponibles en mi GitHub.</p>
             <div class="project-list" aria-label="Proyectos de GitHub">
@@ -166,17 +245,19 @@
         </aside>
       </section>
 
+      <!-- Indicaciones de navegación e identidad del pie. -->
       <footer class="hud-footer">
         <div class="command-stack">
           <span>LEO</span><span>JESHUA</span><span>ALLAN</span>
         </div>
         <div class="control-hint">
-          <i>←</i><span>SELECT A CARD</span><i>→</i>
+          <i>↑ ↓</i><span>SELECT / ENTER CONFIRM / ESC BACK</span>
         </div>
-        <div class="identity"><b>LEO'S</b><span>PORTFOLIO</span></div>
+        <div class="identity"><b>LEO</b><span>PORTFOLIO</span></div>
       </footer>
     </main>
 
+    <!-- Reproductor persistente y biblioteca de audio. -->
     <section
       id="music-player"
       class="music-player"
@@ -189,7 +270,7 @@
         aria-expanded="false"
         aria-controls="music-library"
       >
-        <span>♫ P3 MUSIC</span>
+        <span>♫</span>
         <small class="current-track">MASS DESTRUCTION -RELOAD-</small>
         <i>+</i>
       </button>
@@ -251,6 +332,13 @@
         </div>
         <div class="audio-console" aria-label="Controles de reproducción">
           <button
+            id="previous-track"
+            type="button"
+            aria-label="Canción anterior"
+          >
+            ◀|
+          </button>
+          <button
             id="playback-toggle"
             class="playback-toggle"
             type="button"
@@ -283,17 +371,37 @@
             »
           </button>
         </div>
-        <audio id="persona-player" preload="metadata" autoplay>
+        <div class="volume-console">
+          <button
+            id="mute-toggle"
+            type="button"
+            aria-label="Silenciar"
+            aria-pressed="false"
+          >
+            ♪
+          </button>
+          <input
+            id="music-volume"
+            type="range"
+            min="0"
+            max="100"
+            value="65"
+            aria-label="Volumen"
+          />
+          <span id="volume-value">65%</span>
+        </div>
+        <audio id="persona-player" preload="metadata">
           <source
             src="assets/audio/Mass%20Destruction%20-Reload-.mp3"
             type="audio/mpeg"
           />
           Tu navegador no puede reproducir audio HTML5.
         </audio>
-        <p class="music-note">ELIGE UNA PISTA Y PULSA PLAY</p>
+        <p class="music-note" role="status">ELIGE UNA PISTA Y PULSA PLAY</p>
       </div>
     </section>
 
+    <!-- Indicador de carga y lógica de la página. -->
     <div class="loader"><span>LOADING PERSONA</span><i></i><b>00</b></div>
     <script src="script.js?v=nav-ui-1"></script>
   </body>
