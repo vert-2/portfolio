@@ -12,8 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&family=DM+Mono:wght@400;500&family=Oswald:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=nav-ui-2" />
-    <link rel="stylesheet" href="reference.css?v=leo-1" />
+    <link rel="stylesheet" href="styles.css?v=nav-ui-3" />
+    <link rel="stylesheet" href="reference.css?v=leo-2" />
   </head>
   <body class="leo-reference">
     <!-- Fondo animado e introducción. -->
@@ -34,16 +34,9 @@
         <a class="persona-logo" href="#about" aria-label="Inicio"
           ><span>LEO'S</span><strong>Persona</strong></a
         >
-        <p class="system-label">FOLIO // PORTFOLIO</p>
       </header>
 
       <section class="hero-ui" aria-label="Navegación del portfolio">
-        <div class="hero-copy">
-          <span>THE DIGITAL</span>
-          <h1>LEO'S<br />PERSONA</h1>
-          <p>PORTFOLIO<br />// 2026</p>
-        </div>
-
         <!-- Menú principal: cada data-panel corresponde a un data-content. -->
         <nav class="persona-nav" aria-label="Secciones">
           <button
@@ -55,7 +48,7 @@
             aria-current="page"
             tabindex="0"
           >
-            <b></b><span>ABOUT ME</span><i>⌁</i>
+            <span>ABOUT ME</span>
           </button>
           <button
             class="persona-card"
@@ -65,7 +58,7 @@
             aria-pressed="false"
             tabindex="-1"
           >
-            <b></b><span>RESUME</span><i>↗</i>
+            <span>RESUME</span>
           </button>
           <button
             class="persona-card"
@@ -75,7 +68,7 @@
             aria-pressed="false"
             tabindex="-1"
           >
-            <b></b><span>GITHUB LINK</span><i>↗</i>
+            <span>GITHUB LINK</span>
           </button>
           <button
             class="persona-card"
@@ -85,7 +78,7 @@
             aria-pressed="false"
             tabindex="-1"
           >
-            <b></b><span>SOCIALS</span><i>↗</i>
+            <span>SOCIALS</span>
           </button>
           <button
             class="persona-card"
@@ -95,7 +88,7 @@
             aria-pressed="false"
             tabindex="-1"
           >
-            <b></b><span>SIDE PROJECTS</span><i>↗</i>
+            <span>SIDE PROJECTS</span>
           </button>
         </nav>
 
@@ -247,9 +240,6 @@
 
       <!-- Indicaciones de navegación e identidad del pie. -->
       <footer class="hud-footer">
-        <div class="command-stack">
-          <span>LEO</span><span>JESHUA</span><span>ALLAN</span>
-        </div>
         <div class="control-hint">
           <i>↑ ↓</i><span>SELECT / ENTER CONFIRM / ESC BACK</span>
         </div>
@@ -276,22 +266,6 @@
       </button>
 
       <div id="music-library" class="music-library" hidden>
-        <div class="music-heading">
-          <span>PERSONA 3</span>
-          <b>PERSONA SOUND<br />SELECTION</b>
-        </div>
-        <div class="now-playing">
-          <img
-            class="album-cover"
-            src="https://st.cdjapan.co.jp/pictures/l/16/47/NEODAI-193590.jpg"
-            alt="Portada de Persona 3 Reload Original Soundtrack"
-          />
-          <div>
-            <span>NOW PLAYING</span>
-            <b class="current-track">MASS DESTRUCTION -RELOAD-</b>
-            <small>PERSONA 3 RELOAD OST</small>
-          </div>
-        </div>
         <div class="track-list" role="group" aria-label="Canciones disponibles">
           <button
             class="track active"
@@ -349,7 +323,6 @@
           <div class="progress-console">
             <div class="progress-labels">
               <span id="current-time">00:00</span>
-              <b>TRACK PROGRESS</b>
               <span id="track-duration">--:--</span>
             </div>
             <input
@@ -403,6 +376,6 @@
 
     <!-- Indicador de carga y lógica de la página. -->
     <div class="loader"><span>LOADING PERSONA</span><i></i><b>00</b></div>
-    <script src="script.js?v=nav-ui-1"></script>
+    <script src="script.js?v=nav-ui-2"></script>
   </body>
 </html>
