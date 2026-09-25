@@ -42,13 +42,15 @@
 .leo-reference .persona-nav .persona-card {
   --tilt: -5deg;
   --offset: 0px;
+  /* La cuña y la tinta roja comparten coordenadas respecto al botón. */
+  --selection-cut: polygon(-8% 95%, 108% -32%, 99% 78%);
   display: flex !important;
   align-items: center !important;
   width: max-content;
   max-width: none;
   min-height: 0;
-  height: calc(var(--menu-size) * 1.03) !important;
-  margin: 0 0 0 var(--offset) !important;
+  height: calc(var(--menu-size) * 1.06) !important;
+  margin: calc(var(--menu-size) * -0.16) 0 0 var(--offset) !important;
   padding: 0;
   transform: rotate(var(--tilt)) !important;
   transform-origin: 40% 50%;
@@ -63,77 +65,106 @@
     filter 0.2s ease;
 }
 
-.leo-reference .persona-card:nth-child(1) {
-  --tilt: 9deg;
+.leo-reference .persona-nav .persona-card:nth-child(1) {
+  --tilt: -14deg;
   --offset: 0px;
+  margin-top: 0 !important;
 }
 
 .leo-reference .persona-card:nth-child(2) {
-  --tilt: -7deg;
-  --offset: 24px;
+  --tilt: -10deg;
+  --offset: 36px;
 }
 
 .leo-reference .persona-card:nth-child(3) {
-  --tilt: -4deg;
-  --offset: 8px;
+  --tilt: -12deg;
+  --offset: 10px;
 }
 
 .leo-reference .persona-card:nth-child(4) {
-  --tilt: 2deg;
-  --offset: 22px;
+  --tilt: -8deg;
+  --offset: 24px;
 }
 
 .leo-reference .persona-card:nth-child(5) {
-  --tilt: 7deg;
+  --tilt: 5deg;
   --offset: 4px;
 }
 
 .leo-reference .persona-nav .persona-card span {
   font:
-    700 var(--menu-size)/0.95 "Oswald",
-    "Arial Narrow",
+    900 var(--menu-size)/1 "Arial Black",
+    Arial,
     sans-serif;
   font-style: normal;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.075em;
   white-space: nowrap;
-  line-height: 0.95 !important;
+  line-height: 1 !important;
   transform: skewX(-12deg) !important;
-  color: #55c9ee;
-  -webkit-text-fill-color: #55c9ee;
+  color: #65efff;
+  -webkit-text-fill-color: #65efff;
   background: none;
   -webkit-text-stroke: 0;
-  text-shadow:
-    1px 2px 0 #2b8fd0,
-    2px 3px 0 rgba(12, 70, 154, 0.4);
+  text-shadow: 1px 1px 0 rgba(0, 130, 202, 0.35);
 }
 
 .leo-reference .persona-nav .persona-card.active {
   z-index: 5;
+  transform: rotate(-14deg) scale(1.1) !important;
 }
 
 .leo-reference .persona-nav .persona-card.active span {
-  color: #e82943;
-  -webkit-text-fill-color: #e82943;
-  text-shadow: 2px 2px 0 #921d39;
+  color: #050509;
+  background: none;
+  -webkit-text-fill-color: #050509;
+  text-shadow: none;
+  filter: drop-shadow(2px 4px 0 #050509);
+}
+
+.leo-reference .persona-card .selection-ink {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  clip-path: var(--selection-cut);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 1;
+}
+
+.leo-reference .persona-card.active .selection-ink {
+  opacity: 1;
+}
+
+.leo-reference .persona-nav .persona-card.active .selection-ink span {
+  color: #ff1028;
+  -webkit-text-fill-color: #ff1028;
+  filter: none;
+  text-shadow: none;
 }
 
 .leo-reference .persona-app .persona-card::before,
 .leo-reference .persona-app .persona-card::after {
-  inset: 4% auto auto -9px !important;
-  width: calc(100% + 65px) !important;
-  height: 90% !important;
+  /* Caja real del triángulo: evita pintar sombras fuera de sus límites. */
+  inset: -32% auto auto -8% !important;
+  width: 116% !important;
+  height: 127% !important;
   transform: none !important;
   filter: none !important;
-  clip-path: polygon(0 0, 100% 75%, 0 100%) !important;
+  /* Equivale a --selection-cut, normalizado dentro de esta caja. */
+  clip-path: polygon(0 100%, 100% 0, 92.241379% 86.614173%) !important;
   opacity: 0 !important;
   background: #fff !important;
+  box-shadow: none !important;
+  border: 0 !important;
+  animation: none !important;
   z-index: -1 !important;
   transition: opacity 0.16s ease;
 }
 
 .leo-reference .persona-app .persona-card::after {
-  inset: 12% auto auto -10px !important;
-  background: #ff528a !important;
+  transform: translate(5px, 3px) !important;
+  background: #ff83eb !important;
   z-index: -2 !important;
 }
 
@@ -413,7 +444,7 @@
 
 @media (max-width: 560px) {
   .leo-reference {
-    --menu-size: clamp(28px, 7.7vw, 42px);
+    --menu-size: clamp(23px, 7.2vw, 40px);
   }
 
   .leo-reference .hero-ui {
@@ -434,11 +465,6 @@
 
   .leo-reference .persona-card:nth-child(4) {
     --offset: 12px;
-  }
-
-  .leo-reference .persona-app .persona-card::before,
-  .leo-reference .persona-app .persona-card::after {
-    width: calc(100% + 25px) !important;
   }
 
   .leo-reference .music-player {
