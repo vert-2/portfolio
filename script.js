@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-
   const intro = document.querySelector("#video-intro");
   const loop = document.querySelector("#video-loop");
   const stage = document.querySelector(".video-stage");
@@ -8,8 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const personaLogo = document.querySelector(".persona-logo");
   const progress = loader.querySelector("i");
   const percent = loader.querySelector("b");
-  const cards = document.querySelectorAll(".persona-card");
-  const cardList = Array.from(cards);
+  const cardList = Array.from(document.querySelectorAll(".persona-card"));
   const panels = document.querySelectorAll(".panel-content");
   const musicPlayer = document.querySelector("#music-player");
   const musicToggle = document.querySelector("#music-toggle");
@@ -26,27 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
   const volume = document.querySelector("#music-volume");
   const muteToggle = document.querySelector("#mute-toggle");
   const musicNote = document.querySelector(".music-note");
- 
+
   musicPlayer.append(
     document.querySelector(".audio-console"),
     document.querySelector(".volume-console"),
     musicNote,
   );
 
-  
   const endLoading = () => {
     progress.style.setProperty("--progress", "100%");
     percent.textContent = "100";
     window.setTimeout(() => loader.classList.add("done"), 450);
   };
 
-  
   const playLoop = () => {
     stage.classList.add("is-looping");
     loop.play().catch(() => {});
   };
 
-  
   intro.addEventListener("timeupdate", () => {
     if (!Number.isFinite(intro.duration)) return;
     const current = Math.min(
@@ -82,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   syncCardState(selectedCard);
 
   // Muestra el panel correspondiente a cada tarjeta del menu.
-  cards.forEach((card) => {
+  cardList.forEach((card) => {
     card.addEventListener("pointerenter", () => {
       if (personaApp.classList.contains("is-menu")) syncCardState(card);
     });
@@ -123,16 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // 4. Regreso al menu y atajos globales.
-  personaLogo.addEventListener("click", (event) => {
-    event.preventDefault();
-    personaApp.classList.add("is-menu");
-    selectedCard?.focus({ preventScroll: true });
-  });
-
   const returnToMenu = () => {
     personaApp.classList.add("is-menu");
     selectedCard?.focus({ preventScroll: true });
   };
+  personaLogo.addEventListener("click", (event) => {
+    event.preventDefault();
+    returnToMenu();
+  });
   document.querySelector(".back-menu").addEventListener("click", returnToMenu);
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
