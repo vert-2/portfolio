@@ -184,15 +184,15 @@ export default function App() {
                 ME
               </h2>
               <p>
-                Leopoldo Rodríguez Fernández · Estudiante con interés en
-                programación y experiencia en ventas y atención al cliente.
+                Soy Leopoldo, pero puedes llamarme Leo. Soy estudiante y estoy
+                empezando a aprender programación.
               </p>
               <div className="stats">
                 <span>
-                  <b>01</b> APRENDIZAJE CONTINUO
+                  <b>01</b> ESTUDIANTE
                 </span>
                 <span>
-                  <b>02</b> TRABAJO EN EQUIPO
+                  <b>02</b> APRENDIENDO A PROGRAMAR
                 </span>
               </div>
               <div className="section-switcher" aria-label="Perfil de Leo">
@@ -221,22 +221,18 @@ export default function App() {
                 </button>
               </div>
               <p data-detail-content="bio" hidden={nav.details.about !== "bio"}>
-                Soy una persona responsable y proactiva, con habilidades de
-                comunicación, trabajo en equipo y resolución de problemas. Mi
-                experiencia comercial me ha permitido desarrollar relaciones con
-                clientes y colaborar en el cumplimiento de objetivos. Me adapto
-                a nuevos retos con iniciativa y una actitud positiva, y disfruto
-                ampliar mis conocimientos a través de la programación y la
-                creación de proyectos.
+                Todavía estoy aprendiendo las bases y no tengo experiencia
+                laboral como programador. Aquí comparto mis ejercicios y
+                proyectos mientras voy practicando. Me gusta probar cosas y
+                entender cómo funcionan, aunque a veces me toque equivocarme
+                varias veces. Antes trabajé en ventas y atención al cliente;
+                ahora quiero seguir aprendiendo y ver qué puedo crear con código.
               </p>
               <p
                 data-detail-content="interests"
                 hidden={nav.details.about !== "interests"}
               >
-                Me gusta programar, escuchar música y jugar ajedrez. La
-                programación me permite crear soluciones y seguir aprendiendo;
-                la música forma parte de mi día a día y el ajedrez es una de mis
-                actividades favoritas.
+                Me gusta programar, escuchar música y jugar ajedrez.
               </p>
             </div>
             <div
@@ -336,7 +332,7 @@ export default function App() {
                 </p>
                 <h3>Idiomas</h3>
                 <p>
-                  Español e inglés: nivel nativo o bilingüe, según el CV.
+                  Español e inglés: nivel nativo o bilingüe.
                   Certificado de inglés B2+ del Colegio IADIS Institute.
                 </p>
               </div>
