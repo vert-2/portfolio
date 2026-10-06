@@ -1139,6 +1139,27 @@ button {
   font-size: 16px;
 }
 
+.leo-reference .resume-detail h3 {
+  margin: 20px 0 8px;
+  color: #87edff;
+  font: 800 24px/1.15 var(--display);
+}
+
+.leo-reference .resume-detail ul {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  font: 600 16px/1.45 var(--display);
+}
+
+.leo-reference .resume-detail li + li {
+  margin-top: 10px;
+}
+
+.leo-reference .panel-link:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
 .leo-reference [hidden] {
   display: none !important;
 }

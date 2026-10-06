@@ -46,23 +46,6 @@ export default function App() {
       <main
         className={`persona-app${nav.isMenu ? " is-menu" : ""}${nav.keyboardMenu ? " keyboard-menu" : ""}`}
       >
-        {/* Identidad y cabecera. */}
-        <header className="topbar">
-          <a
-            ref={nav.logo}
-            onClick={(event) => {
-              event.preventDefault();
-              nav.returnToMenu();
-            }}
-            className="persona-logo"
-            href="#about"
-            aria-label="Inicio"
-          >
-            <span>LEO'S</span>
-            <strong>Persona</strong>
-          </a>
-        </header>
-
         <section className="hero-ui" aria-label="Navegación del portfolio">
           {/* Menú principal: cada data-panel corresponde a un data-content. */}
           <nav className="persona-nav" aria-label="Secciones">
@@ -200,13 +183,16 @@ export default function App() {
                 <br />
                 ME
               </h2>
-              <p>Una persona que le encanta aprender y crear cosas nuevas.</p>
+              <p>
+                Leopoldo Rodríguez Fernández · Estudiante con interés en
+                programación y experiencia en ventas y atención al cliente.
+              </p>
               <div className="stats">
                 <span>
-                  <b>∞</b> CURIOSIDAD
+                  <b>01</b> APRENDIZAJE CONTINUO
                 </span>
                 <span>
-                  <b>01</b> HUMANO
+                  <b>02</b> TRABAJO EN EQUIPO
                 </span>
               </div>
               <div className="section-switcher" aria-label="Perfil de Leo">
@@ -235,14 +221,22 @@ export default function App() {
                 </button>
               </div>
               <p data-detail-content="bio" hidden={nav.details.about !== "bio"}>
-                Leo — una persona que disfruta aprender y crear cosas nuevas.
+                Soy una persona responsable y proactiva, con habilidades de
+                comunicación, trabajo en equipo y resolución de problemas. Mi
+                experiencia comercial me ha permitido desarrollar relaciones con
+                clientes y colaborar en el cumplimiento de objetivos. Me adapto
+                a nuevos retos con iniciativa y una actitud positiva, y disfruto
+                ampliar mis conocimientos a través de la programación y la
+                creación de proyectos.
               </p>
               <p
                 data-detail-content="interests"
                 hidden={nav.details.about !== "interests"}
               >
-                Programación y creación de proyectos. Explora SIDE PROJECTS para
-                ver mi trabajo.
+                Me gusta programar, escuchar música y jugar ajedrez. La
+                programación me permite crear soluciones y seguir aprendiendo;
+                la música forma parte de mi día a día y el ajedrez es una de mis
+                actividades favoritas.
               </p>
             </div>
             <div
@@ -306,18 +300,46 @@ export default function App() {
                   IV / EXPERIENCE
                 </button>
               </div>
-              <p
+              <div
+                className="resume-detail"
                 data-detail-content="education"
                 hidden={nav.details.resume !== "education"}
               >
-                Programación 3: clases y tareas disponibles en mis repositorios.
-              </p>
-              <p
+                <h3>Colegio IADIS</h3>
+                <p className="content-note">
+                  Junio de 2023 · San Francisco de Macorís, Duarte
+                </p>
+                <h3>Certificado de inglés B2+</h3>
+                <p>Colegio IADIS Institute</p>
+                <p className="content-note">
+                  Febrero de 2021 · San Francisco de Macorís, Duarte
+                </p>
+              </div>
+              <div
+                className="resume-detail"
                 data-detail-content="skills"
                 hidden={nav.details.resume !== "skills"}
               >
-                C# y Java, utilizados en los proyectos de este portafolio.
-              </p>
+                <h3>Habilidades profesionales</h3>
+                <p>
+                  Relaciones con clientes, atención al cliente, capacitación en
+                  ventas, generación de confianza, soporte técnico y seguimiento
+                  de ventas.
+                </p>
+                <p>
+                  Comunicación eficaz, trabajo en equipo, resolución de
+                  problemas y adaptación a nuevos retos.
+                </p>
+                <h3>Programación</h3>
+                <p>
+                  C# y Java, utilizados en los proyectos de este portafolio.
+                </p>
+                <h3>Idiomas</h3>
+                <p>
+                  Español e inglés: nivel nativo o bilingüe, según el CV.
+                  Certificado de inglés B2+ del Colegio IADIS Institute.
+                </p>
+              </div>
               <p
                 data-detail-content="work"
                 hidden={nav.details.resume !== "work"}
@@ -325,15 +347,40 @@ export default function App() {
                 Sacaito y los repositorios de Programación 3. Consulta SIDE
                 PROJECTS para abrirlos.
               </p>
-              <p
+              <div
+                className="resume-detail"
                 data-detail-content="experience"
                 hidden={nav.details.resume !== "experience"}
               >
-                Información de experiencia pendiente de añadir.
-              </p>
-              <p className="content-note">
-                CV descargable pendiente de añadir.
-              </p>
+                <h3>Agente de ventas · Voice Team</h3>
+                <p className="content-note">Octubre de 2024 - junio de 2025</p>
+                <p>San Francisco de Macorís, República Dominicana</p>
+                <ul>
+                  <li>
+                    Generación de prospectos mediante una comunicación eficaz y
+                    el desarrollo de relaciones con clientes potenciales.
+                  </li>
+                  <li>
+                    Colaboración en estrategias de ventas para aumentar la
+                    visibilidad de los productos y su penetración en el mercado.
+                  </li>
+                  <li>
+                    Demostraciones de productos para presentar sus
+                    características y beneficios.
+                  </li>
+                  <li>
+                    Trabajo en equipo para alcanzar los objetivos mensuales de
+                    ventas y mejorar el desempeño general.
+                  </li>
+                </ul>
+              </div>
+              <a
+                className="panel-link"
+                href="assets/documents/Leopoldo_Rodriguez_Fernandez_CV.pdf"
+                download="Leopoldo_Rodriguez_Fernandez_CV.pdf"
+              >
+                DESCARGAR CV · PDF <span aria-hidden="true">↓</span>
+              </a>
             </div>
             <div
               id="panel-github"
@@ -369,7 +416,14 @@ export default function App() {
               </h2>
               <p>Mis redes sociales.</p>
               <div className="social-list">
-                <span>LINKEDIN · PRÓXIMAMENTE</span>
+                <a
+                  className="panel-link"
+                  href="https://www.linkedin.com/in/leopoldo-rodriguez-8724b1355/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LINKEDIN <span aria-hidden="true">↗</span>
+                </a>
                 <span>TIKTOK · PRÓXIMAMENTE</span>
                 <span>INSTAGRAM · PRÓXIMAMENTE</span>
               </div>
@@ -535,10 +589,7 @@ export default function App() {
             id="persona-player"
             preload="metadata"
           >
-            <source
-              src="assets/audio/Jane%20Doe.mp3"
-              type="audio/mpeg"
-            />
+            <source src="assets/audio/Jane%20Doe.mp3" type="audio/mpeg" />
             Tu navegador no puede reproducir audio HTML5.
           </audio>
         </div>

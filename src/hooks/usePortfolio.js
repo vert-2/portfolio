@@ -30,7 +30,6 @@ export function usePortfolio() {
   const cards = useRef({});
   const back = useRef(null);
   const info = useRef(null);
-  const logo = useRef(null);
   const musicToggle = useRef(null);
   const focusTarget = useRef(null);
 
@@ -95,7 +94,7 @@ export function usePortfolio() {
       }
       if (
         isMenu &&
-        (event.target === document.body || event.target === logo.current) &&
+        event.target === document.body &&
         ["ArrowUp", "ArrowDown"].includes(event.key)
       ) {
         event.preventDefault();
@@ -125,7 +124,6 @@ export function usePortfolio() {
     cards,
     back,
     info,
-    logo,
     musicToggle,
     select,
     openPanel,
