@@ -1290,6 +1290,21 @@ button {
 }
 
 @media (max-width: 830px) {
+  .leo-reference .video-stage {
+    inset: 0;
+    width: 100vw;
+    height: 100dvh;
+  }
+
+  .leo-reference .video-stage video {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+    transform: none;
+  }
+
   .leo-reference {
     --menu-size: clamp(30px, 5.1vw, 43px);
   }
@@ -1314,8 +1329,8 @@ button {
   }
 
   .leo-reference .persona-app {
-    height: 100svh;
-    min-height: 100svh;
+    height: 100dvh;
+    min-height: 100dvh;
     padding: max(16px, env(safe-area-inset-top)) 16px
       calc(var(--mobile-player-space) + env(safe-area-inset-bottom));
     overflow-x: clip;
@@ -1343,6 +1358,9 @@ button {
     height: max(44px, calc(var(--menu-size) * 1.2)) !important;
     margin-top: calc(var(--menu-size) * -0.22) !important;
     touch-action: manipulation;
+    animation: none;
+    opacity: 1;
+    clip-path: none;
   }
 
   .leo-reference .persona-card:nth-child(2) {
@@ -1355,6 +1373,7 @@ button {
 
   .leo-reference .music-player {
     inset: auto 12px max(12px, env(safe-area-inset-bottom)) 12px;
+    z-index: 10;
     width: auto;
     transform: none;
     padding: 8px 10px;
@@ -1411,6 +1430,34 @@ button {
     padding: 16px;
     overscroll-behavior: contain;
     scrollbar-width: thin;
+  }
+
+  /* Al leer una sección, el reproductor queda compacto y libera el panel. */
+  .leo-reference:has(.persona-app:not(.is-menu)) {
+    --mobile-player-space: 84px;
+  }
+
+  .leo-reference:has(.persona-app:not(.is-menu)):has(.music-player.is-open) {
+    --mobile-player-space: 230px;
+  }
+
+  .leo-reference .persona-app:not(.is-menu) .info-panel {
+    z-index: 9;
+    opacity: 1;
+    clip-path: none;
+    transition: none;
+  }
+
+  .leo-reference:has(.persona-app:not(.is-menu))
+    .music-player:not(.is-open)
+    :is(.audio-console, .volume-console, .music-note) {
+    display: none;
+  }
+
+  .leo-reference .back-menu {
+    position: sticky;
+    top: 0;
+    z-index: 2;
   }
 
   .leo-reference .info-panel h2 {

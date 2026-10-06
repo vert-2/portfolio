@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const percent = loader.querySelector("b");
   const cardList = Array.from(document.querySelectorAll(".persona-card"));
   const panels = document.querySelectorAll(".panel-content");
+  const infoPanel = document.querySelector(".info-panel");
   const musicPlayer = document.querySelector("#music-player");
   const musicToggle = document.querySelector("#music-toggle");
   const musicLibrary = document.querySelector("#music-library");
@@ -88,6 +89,10 @@ document.addEventListener("DOMContentLoaded", () => {
       panels.forEach((panel) => {
         panel.hidden = panel.dataset.content !== target;
       });
+      musicLibrary.hidden = true;
+      musicToggle.setAttribute("aria-expanded", "false");
+      musicPlayer.classList.remove("is-open");
+      infoPanel.scrollTop = 0;
       personaApp.classList.remove("is-menu");
       document.querySelector(".back-menu").focus({ preventScroll: true });
     });
